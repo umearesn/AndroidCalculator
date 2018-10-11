@@ -18,7 +18,7 @@
             android:background="#ff000000"
             android:textColor="#ffffffff"
             android:textSize="30sp"
-            android:text="Go to calculator"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

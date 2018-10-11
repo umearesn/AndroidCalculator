@@ -23,6 +23,13 @@ import android.content.Intent;
 
 
 public class MainActivity extends AppCompatActivity {
+    @Override
+    public void onBackPressed(){
+        TextView table = findViewById(R.id.table);
+        Intent intentFromCalc = new Intent(MainActivity.this, NewActivity.class);
+        intentFromCalc.putExtra("cur_res", table.getText());
+        startActivity(intentFromCalc);
+    }
 
     String totalResult;
     boolean isSignEntered = false;
@@ -109,6 +116,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView table = findViewById(R.id.table);
+        Intent intentFromSecPage = getIntent();
+        //totalResult = intentFromSecPage.getStringExtra("disp_res");
+        //table.setText(totalResult);
 
 
         final Button btn0 = (Button)findViewById(R.id.button0);
@@ -257,10 +269,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 resultProcessed();
-                /*totalResult = totalResult.concat(table.getText().toString());
-                double res = equal(totalResult);
-                totalResult = Double.toString(res);
-                table.setText(totalResult);*/
             }
         });
 
