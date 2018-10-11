@@ -163,6 +163,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button btnPoint = (Button)findViewById(R.id.point);
+        btnPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textInput(btnPoint);
+            }
+        });
+
         final Button del = (Button)findViewById(R.id.del);
         del.setOnClickListener(new View.OnClickListener() {
             TextView table = findViewById(R.id.table);
@@ -193,8 +201,8 @@ public class MainActivity extends AppCompatActivity {
                 totalResult = totalResult.concat(table.getText().toString());
                 double res = equal(totalResult);
                 //totalResult = equal(totalResult);
-                //totalResult = Double.toString(res);
-                totalResult = String.format("%.0f", res);
+                totalResult = Double.toString(res);
+                //totalResult = String.format("%.0f", res);
                 table.setText(totalResult);
             }
         });
