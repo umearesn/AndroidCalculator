@@ -11,17 +11,6 @@ import java.util.regex.*;
 import android.widget.EditText;
 import android.content.Intent;
 
-
-/*
-АХТУНГ
-Шутка про 28 ударов нулем
-28 делений на ноль - редирект на пасту
-Листал медведь телефон, видит - калькулятор открыт, поделил на ноль и сгорел
-Ввел мужик 9 символов, а они ему как раз
-Пожестче: зига на 1488, косяк на 228
- */
-
-
 public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
@@ -64,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     public double equal(String str) {
         double res1 = 0, res2 = 0;
-        //String res1;
         int signPos = 0;
         for(int i = 0; i < str.length(); i++) {
             if (isSign(str.charAt(i))) {
@@ -77,9 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             }
-            //break;
         }
-        //return str.substring(signPos, signPos + 1);
         return newRes(str.charAt(signPos), res1, res2);
     }
 
@@ -91,27 +77,6 @@ public class MainActivity extends AppCompatActivity {
         table.setText(totalResult);
     }
 
-    /*
-    public void textInput(Button btn) {
-        TextView table = findViewById(R.id.table);
-        if (isSign(btn.getText().charAt(0))) {
-            if (isSignEntered) {
-                //resultProcessed();
-                //isSignEntered = false;
-                //basicTextInput(btn);
-                while(isSign(btn.getText().charAt(0))){
-                    table.setText("Try again");
-                }
-                isSignEntered = false;
-            }
-            isSignEntered = true;
-            basicTextInput(btn);
-        } else {
-            basicTextInput(btn);
-        }
-    }
-    */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,9 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
         TextView table = findViewById(R.id.table);
         Intent intentFromSecPage = getIntent();
-        //totalResult = intentFromSecPage.getStringExtra("disp_res");
-        //table.setText(totalResult);
-
+        totalResult = intentFromSecPage.getStringExtra("disp_res");
+        table.setText(totalResult);
 
         final Button btn0 = (Button)findViewById(R.id.button0);
         btn0.setOnClickListener(new View.OnClickListener() {
@@ -271,10 +235,5 @@ public class MainActivity extends AppCompatActivity {
                 resultProcessed();
             }
         });
-
     }
-
-
-
-
 }
