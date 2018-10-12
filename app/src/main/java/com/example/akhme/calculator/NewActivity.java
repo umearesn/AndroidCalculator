@@ -14,7 +14,7 @@ public class NewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_activity);
 
-        Intent intentFromFirstPage = getIntent();
+        final Intent intentFromFirstPage = getIntent();
         TextView table = findViewById(R.id.result);
         table.setText(intentFromFirstPage.getStringExtra("cur_res"));
 
@@ -22,10 +22,9 @@ public class NewActivity extends AppCompatActivity {
         btnToCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView table = findViewById(R.id.table);
-                //Context appContext = getApplicationContext();
+                TextView table = findViewById(R.id.result);
                 Intent intentToCalc = new Intent(NewActivity.this, MainActivity.class);
-                //intentToCalc.putExtra("disp_res", table.getText().toString());
+                intentToCalc.putExtra("disp_res", table.getText().toString());
                 startActivity(intentToCalc);
             }
         });
