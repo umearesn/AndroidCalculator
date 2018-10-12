@@ -11,17 +11,20 @@ import java.util.regex.*;
 import android.widget.EditText;
 import android.content.Intent;
 
+
+/*
+АХТУНГ
+Шутка про 28 ударов нулем
+28 делений на ноль - редирект на пасту
+Листал медведь телефон, видит - калькулятор открыт, поделил на ноль и сгорел
+Ввел мужик 9 символов, а они ему как раз
+Пожестче: зига на 1488, косяк на 228
+ */
+
+
 public class MainActivity extends AppCompatActivity {
-    @Override
-    public void onBackPressed(){
-        TextView table = findViewById(R.id.table);
-        Intent intentFromCalc = new Intent(MainActivity.this, NewActivity.class);
-        intentFromCalc.putExtra("cur_res", table.getText());
-        startActivity(intentFromCalc);
-    }
 
     String totalResult;
-    boolean isSignEntered = false;
 
     public void textInput(Button btn){
         TextView table = findViewById(R.id.table);
@@ -53,28 +56,25 @@ public class MainActivity extends AppCompatActivity {
 
     public double equal(String str) {
         double res1 = 0, res2 = 0;
+        //String res1;
         int signPos = 0;
         for(int i = 0; i < str.length(); i++) {
             if (isSign(str.charAt(i))) {
                 signPos = i;
                 res1 = Double.parseDouble(str.substring(0, i));
+                //res1 = str.substring(0, signPos);
                 if (i < str.length() - 1) {
                     res2 = Double.parseDouble(str.substring(i + 1, str.length()));
                 } else {
                     return res1;
+                    //return str.substring(signPos, signPos + 1);
                 }
                 break;
             }
+            //break;
         }
+        //return str.substring(signPos, signPos + 1);
         return newRes(str.charAt(signPos), res1, res2);
-    }
-
-    public void resultProcessed(){
-        TextView table = findViewById(R.id.table);
-        totalResult = totalResult.concat(table.getText().toString());
-        double res = equal(totalResult);
-        totalResult = Double.toString(res);
-        table.setText(totalResult);
     }
 
     @Override
@@ -82,10 +82,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView table = findViewById(R.id.table);
-        Intent intentFromSecPage = getIntent();
-        totalResult = intentFromSecPage.getStringExtra("disp_res");
-        table.setText(totalResult);
 
         final Button btn0 = (Button)findViewById(R.id.button0);
         btn0.setOnClickListener(new View.OnClickListener() {
@@ -197,43 +193,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button btnMinus = (Button)findViewById(R.id.minus);
-        btnMinus.setOnClickListener(new View.OnClickListener() {
-            TextView table = findViewById(R.id.table);
-            @Override
-            public void onClick(View v) {
-                totalResult = table.getText().toString();
-                table.setText(btnMinus.getText().toString());
-            }
-        });
-
-        final Button btnMulti = (Button)findViewById(R.id.multiplication);
-        btnMulti.setOnClickListener(new View.OnClickListener() {
-            TextView table = findViewById(R.id.table);
-            @Override
-            public void onClick(View v) {
-                totalResult = table.getText().toString();
-                table.setText(btnMulti.getText().toString());
-            }
-        });
-
-        final Button btnDiv = (Button)findViewById(R.id.division);
-        btnDiv.setOnClickListener(new View.OnClickListener() {
-            TextView table = findViewById(R.id.table);
-            @Override
-            public void onClick(View v) {
-                totalResult = table.getText().toString();
-                table.setText(btnDiv.getText().toString());
-            }
-        });
-
         final Button btnEqual = (Button)findViewById(R.id.equal);
         btnEqual.setOnClickListener(new View.OnClickListener() {
             TextView table = findViewById(R.id.table);
             @Override
             public void onClick(View v) {
-                resultProcessed();
+                totalResult = totalResult.concat(table.getText().toString());
+                double res = equal(totalResult);
+                //totalResult = equal(totalResult);
+                totalResult = Double.toString(res);
+                //totalResult = String.format("%.0f", res);
+                table.setText(totalResult);
             }
         });
+
+
+        //Начало говнокуска
+
+        /*
+        final Button plus = (Button)findViewById(R.id.plus);
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                operatorsInput(plus, currentRes);
+            }
+        });
+        */
+        //Конец Говнокуска
+
     }
+
+
+
+
 }
