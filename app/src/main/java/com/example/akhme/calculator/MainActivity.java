@@ -12,16 +12,6 @@ import android.widget.EditText;
 import android.content.Intent;
 
 
-/*
-АХТУНГ
-Шутка про 28 ударов нулем
-28 делений на ноль - редирект на пасту
-Листал медведь телефон, видит - калькулятор открыт, поделил на ноль и сгорел
-Ввел мужик 9 символов, а они ему как раз
-Пожестче: зига на 1488, косяк на 228
- */
-
-
 public class MainActivity extends AppCompatActivity {
 
     String totalResult;
@@ -206,20 +196,6 @@ public class MainActivity extends AppCompatActivity {
                 table.setText(totalResult);
             }
         });
-
-
-        //Начало говнокуска
-
-        /*
-        final Button plus = (Button)findViewById(R.id.plus);
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                operatorsInput(plus, currentRes);
-            }
-        });
-        */
-        //Конец Говнокуска
 
     }
 
